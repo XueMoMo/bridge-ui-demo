@@ -12,8 +12,6 @@ import { create } from 'zustand'
 import { Button } from './btn'
 import { cn, getErrorMsg, handleError, promiseT } from './utils'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-// import { SimpleDialog } from './simple-dialog'
-
 export function SwitchNet({ className, requireChainId }: { className?: string, requireChainId: number }) {
   const sc = useSwitchChain()
   return <Button
@@ -29,6 +27,7 @@ export function SwitchNet({ className, requireChainId }: { className?: string, r
 export type TxConfig = SimulateContractParameters & { name?: string }
 export type TX = TxConfig | (() => Promise<TxConfig>)
 export const useTxsStore = create(() => ({ txs: [] as TxConfig[], progress: 0 }))
+// export const useTxsStore = create(() => ({ txs: [{ name: 'Approve Token'},{ name: 'Bridge'}] as TxConfig[], progress: 1 }))
 // const supportedSendCalls: number[] = isPROD ? [] : [mainnet.id, optimism.id, bsc.id, polygon.id, base.id, arbitrum.id, berachain.id, sepolia.id]
 const supportedSendCalls: number[] = []
 
@@ -136,21 +135,20 @@ export async function withTokenApprove({ approves, pc, user, tx }: {
 export function TxsStat({ className }: { className?: string }) {
   const { txs, progress } = useTxsStore()
   if (txs.length == 0) return null
-  return <div className={cn('w-80 text-stone-50 flex flex-col gap-2 p-4 fixed top-25 right-5 bg-stone-900 rounded-2xl shadow-2xl border border-stone-700/50 z-50', className)}>
-    <div className='text-xl font-semibold'>Progress </div>
-    <div className='flex flex-col gap-2 max-h-80 overflow-y-auto px-2.5'>
-      {txs.map((tx, i) => <div key={`tx_item_stat_${i}`} className={cn('animitem flex items-center gap-5 bg-primary/20 px-4 py-2', { 'border-t border-white/20': i > 0 })}>
+  return <div className={cn('w-80 text-stone-50 flex flex-col gap-2 p-2 md:p-4 fixed top-25 right-5 bg-[#211B6D] rounded-xl shadow-2xl border border-[#584DDE] z-50', className)}>
+    <div className='text-lg font-semibold'>Progress </div>
+    <div className='flex flex-col max-h-80 overflow-y-auto'>
+      {txs.map((tx, i) => <div key={`tx_item_stat_${i}`} className={cn('animitem flex items-center gap-5 bg-primary/20 px-2 py-2', { 'border-t border-[#584DDE]': i > 0 })}>
         <span className='font-semibold'>{i + 1}</span>
         <span className='first-letter:uppercase'>
           {tx.name ?? tx.functionName}
         </span>
-        <div className={cn('ml-auto text-xl', { 'animate-spin': progress == i })}>
+        <div className={cn('ml-auto text-sm', { 'animate-spin': progress == i })}>
           {progress == i && <FaSpinner />}
           {progress > i && <FaCheck className='text-green-500' />}
         </div>
       </div>)}
     </div>
-    {/* <div className='opacity-80 text-center'>Will require multiple signatures, this will be simplified into 1 approval with future updates!</div> */}
   </div>
 }
 
