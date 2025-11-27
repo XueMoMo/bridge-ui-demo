@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+html {
+  background-color: #170245;
+}
+.bg-main {
+  background: url("/bg.png") no-repeat, linear-gradient(#170245, #170245);
+  background-size: cover;
+}
+
+/* For WebKit browsers (Chrome, Safari, Edge, Opera) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Ensures no extra space is left by the hidden buttons */
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.bg-btn {
+  background: linear-gradient(270deg, #fc78ff 0%, #9a6bfe 100%);
+}
