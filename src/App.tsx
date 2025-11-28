@@ -14,6 +14,7 @@ import { WagmiProvider } from 'wagmi';
 import { SupportChains, tokens } from './configs';
 import { TxsStat } from './txs';
 import { BridgeToken } from './bridge-token';
+import { Toaster } from 'sonner';
 
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
@@ -42,10 +43,11 @@ function App() {
       <div className='w-screen h-screen flex flex-col items-center bg-main p-2.5'>
         <BridgeToken config={[tokens[0], tokens[1]]} />
       </div>
-      <TxsStat />
       <div className='flex p-2.5 md:p-4 fixed top-0 right-0'>
         <ConnectButton />
       </div>
+      <TxsStat />
+      <Toaster position='top-right' offset={{ top: 100, right: 20 }} />
     </Providers>
   )
 }

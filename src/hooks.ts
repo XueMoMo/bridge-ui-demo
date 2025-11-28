@@ -7,10 +7,10 @@ export function useBalance(token?: Token, user?: Address) {
   const mUser = user ?? address;
   return useReadContract({
     abi: erc20Abi,
-    address: token!.address,
+    address: token?.address,
     functionName: "balanceOf",
     args: [mUser!],
-    chainId: token!.chain,
+    chainId: token?.chain,
     query: {
       enabled: Boolean(mUser) && isAddress(mUser!) && Boolean(token),
       refetchOnMount: "always",
