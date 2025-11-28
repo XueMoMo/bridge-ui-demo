@@ -23,7 +23,7 @@ const eidMaps: { [k: number]: number } = {
 const defAdapters: {
     [k: `${number}:${Address}`]: Address
 } = {
-    [`${bsc.id}:0x3B4de3c7855C03bB9F50ea252cD2c9FA1125Ab07`]: '0xB5980fD3eaD26d07993B683218256A780060B1db',
+    [`${bsc.id}:0x3b4de3c7855c03bb9f50ea252cd2c9fa1125ab07`]: '0xB5980fD3eaD26d07993B683218256A780060B1db',
 } as const
 
 // layerzero options
